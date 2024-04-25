@@ -10,10 +10,11 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;;
 
 @Entity
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userID;
     private String name;
     private String email;
     private String password;
@@ -25,8 +26,22 @@ public class User {
     private LocalDateTime updatedAt;
 
 
+    public User(Long userID, String name, String email, String password, String phone, String role, LocalDateTime createdAt, LocalDateTime updatedAt, List<Booking> bookings, List<Review> reviews) {
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.bookings = bookings;
+        this.reviews = reviews;
+    }
 
+    public User() {
 
+    }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Booking> bookings;
@@ -34,37 +49,12 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Accommodation> accommodations;
-
-
-
-
-
-    // Constructors, getters, and setters
-
-    public User(String name, String email, String password, String phone, String role) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
+    public Long getUserID() {
+        return userID;
     }
 
-    protected User() {}
-
-
-
-
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getName() {
@@ -123,9 +113,19 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
 
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-
-
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }

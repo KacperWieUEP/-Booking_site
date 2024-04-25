@@ -12,40 +12,19 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long userId;
-    private Long accommodationId;
-    private Long roomId;
+    private Long BookingID;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private BigDecimal totalPrice;
     private String status;
+
+
+
+
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    // Default constructor
-    public Booking() {}
-
-    // Constructor with fields
-    public Booking(Long userId, Long accommodationId, Long roomId, LocalDate checkInDate, LocalDate checkOutDate, BigDecimal totalPrice, String status) {
-        this.userId = userId;
-        this.accommodationId = accommodationId;
-        this.roomId = roomId;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.totalPrice = totalPrice;
-        this.status = status;
-    }
-
-
-
-
-
-
-
-
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -55,41 +34,39 @@ public class Booking {
     @JoinColumn(name = "accommodation_id", nullable = false)
     private Accommodation accommodation;
 
-    @OneToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
+    // Default constructor
+    public Booking() {}
 
 
-    public Long getId() {
-        return id;
+    public Booking(Long bookingID, LocalDate checkInDate, LocalDate checkOutDate, BigDecimal totalPrice, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        BookingID = bookingID;
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Long getBookingID() {
+        return BookingID;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getAccommodationId() {
-        return accommodationId;
-    }
-
-    public void setAccommodationId(Long accommodationId) {
-        this.accommodationId = accommodationId;
-    }
-
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
+    public void setBookingID(Long bookingID) {
+        BookingID = bookingID;
     }
 
     public LocalDate getCheckInDate() {
@@ -139,4 +116,16 @@ public class Booking {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }
+
+

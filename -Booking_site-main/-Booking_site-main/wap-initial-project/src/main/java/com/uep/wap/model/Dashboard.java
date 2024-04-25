@@ -13,18 +13,24 @@ import javax.persistence.*;;
 public class Dashboard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long dashboardID;
     private Integer totalBookings;
     private BigDecimal totalRevenue;
     private String topDestinations;
     private Double avgRating;
     private String userDemographics;
 
-    // Default constructor
-    public Dashboard() {}
+    @OneToOne
+    @JoinColumn(name = "accommodation_id", referencedColumnName = "accommodationID")
+    private Accommodation accommodation;
 
-    // Constructor with fields
-    public Dashboard(Integer totalBookings, BigDecimal totalRevenue, String topDestinations, Double avgRating, String userDemographics) {
+    // Default constructor
+    public Dashboard() {
+    }
+
+
+    public Dashboard(Long dashboardID, Integer totalBookings, BigDecimal totalRevenue, String topDestinations, Double avgRating, String userDemographics) {
+        this.dashboardID = dashboardID;
         this.totalBookings = totalBookings;
         this.totalRevenue = totalRevenue;
         this.topDestinations = topDestinations;
@@ -32,26 +38,12 @@ public class Dashboard {
         this.userDemographics = userDemographics;
     }
 
-
-
-    @OneToMany(mappedBy = "dashboard", cascade = CascadeType.ALL)
-    private List<Booking> bookings;
-
-    @OneToMany(mappedBy = "dashboard", cascade = CascadeType.ALL)
-    private List<Accommodation> accommodations;
-
-    @OneToMany(mappedBy = "dashboard", cascade = CascadeType.ALL)
-    private List<Review> reviews;
-
-
-
-    //getters and setters
-    public Long getId() {
-        return id;
+    public Long getDashboardID() {
+        return dashboardID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setDashboardID(Long dashboardID) {
+        this.dashboardID = dashboardID;
     }
 
     public Integer getTotalBookings() {

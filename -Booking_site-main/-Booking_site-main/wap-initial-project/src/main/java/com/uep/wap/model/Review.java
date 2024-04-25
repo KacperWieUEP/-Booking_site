@@ -11,47 +11,38 @@ import javax.persistence.*;;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long userId;
-    private Long accommodationId;
+    private Long reviewID;
     private Integer rating;
     private String comment;
     @CreatedDate
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "accommodation_id", nullable = false)
+    private Accommodation accommodation;
+
     // Default constructor
     public Review() {}
 
-    // Constructor with fields
-    public Review(Long userId, Long accommodationId, Integer rating, String comment) {
-        this.userId = userId;
-        this.accommodationId = accommodationId;
+    public Review(Long reviewID, Integer rating, String comment, LocalDateTime createdAt, User user) {
+        this.reviewID = reviewID;
         this.rating = rating;
         this.comment = comment;
+        this.createdAt = createdAt;
+        this.user = user;
     }
 
-    public Long getId() {
-        return id;
+
+    public Long getReviewID() {
+        return reviewID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getAccommodationId() {
-        return accommodationId;
-    }
-
-    public void setAccommodationId(Long accommodationId) {
-        this.accommodationId = accommodationId;
+    public void setReviewID(Long reviewID) {
+        this.reviewID = reviewID;
     }
 
     public Integer getRating() {
@@ -76,5 +67,13 @@ public class Review {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
