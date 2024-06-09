@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+    <h2>Registration Form</h2>
+    <form action="#" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <div id="firstNameError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <div id="lastNameError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div id="emailError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <div id="passwordError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+            <div id="phoneError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <div id="roleError" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+
+<script>
+    function validateForm() {
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var phone = document.getElementById("phone");
+        var role = document.getElementById("role");
+        var isValid = true;
+
+        if (firstName.value.trim() === "") {
+            setError(firstName, "First Name cannot be empty");
+            isValid = false;
+        } else {
+            removeError(firstName);
+        }
+
+        if (lastName.value.trim() === "") {
+            setError(lastName, "Last Name cannot be empty");
+            isValid = false;
+        } else {
+            removeError(lastName);
+        }
+
+        if (email.value.trim() === "") {
+            setError(email, "Email cannot be empty");
+            isValid = false;
+        } else if (!validateEmail(email.value.trim())) {
+            setError(email, "Invalid email format");
+            isValid = false;
+        } else {
+            removeError(email);
+        }
+
+        if (password.value.trim() === "") {
+            setError(password, "Password cannot be empty");
+            isValid = false;
+        } else if (password.value.length < 8) {
+            setError(password, "Password must be at least 8 characters long");
+            isValid = false;
+        } else {
+            removeError(password);
+        }
+
+        if (phone.value.trim() === "") {
+            setError(phone, "Phone cannot be empty");
+            isValid = false;
+        } else if (!validatePhone(phone.value.trim())) {
+            setError(phone, "Invalid phone number format");
+            isValid = false;
+        } else {
+            removeError(phone);
+        }
+
+        if (role.value.trim() === "") {
+            setError(role, "Role cannot be empty");
+            isValid = false;
+        } else {
+            removeError(role);
+        }
+
+        return isValid;
+    }
+
+    function setError(input, message) {
+        input.classList.add("error");
+        var errorElement = input.nextElementSibling;
+        errorElement.innerText = message;
+    }
+
+    function removeError(input) {
+        input.classList.remove("error");
+        var errorElement = input.nextElementSibling;
+        errorElement.innerText = "";
+    }
+
+    function validateEmail(email) {
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    function validatePhone(phone) {
+        // Regular expression to validate phone number format (assuming 9 digits)
+        var re = /^\d{9}$/;
+        return re.test(phone);
+    }
+
+</script>
+
+
+</body>
+</html>
