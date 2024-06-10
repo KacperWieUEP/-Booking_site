@@ -1,4 +1,4 @@
-package com.uep.wap.beans;
+/*package com.uep.wap.beans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,3 +14,4 @@ public class AppConfig {
     }
 
     }
+*/

@@ -1,3 +1,5 @@
+/*
+
 package com.uep.wap.beans;
 
 import com.uep.wap.model.Booking;
@@ -99,3 +101,4 @@ public class User implements Serializable {
     }
 
 }
+*/

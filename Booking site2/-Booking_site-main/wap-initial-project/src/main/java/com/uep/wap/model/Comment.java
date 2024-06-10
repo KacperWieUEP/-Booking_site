@@ -18,7 +18,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User author;
+    private AppUser author;
 
     @ManyToOne
     @JoinColumn(name = "accommodation_id", nullable = false)
@@ -27,7 +27,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String content, LocalDateTime createdDate, User author, Accommodation accommodation) {
+    public Comment(String content, LocalDateTime createdDate, AppUser author, Accommodation accommodation) {
         this.content = content;
         this.createdDate = createdDate;
         this.author = author;
@@ -60,11 +60,11 @@ public class Comment {
         this.createdDate = createdDate;
     }
 
-    public User getAuthor() {
+    public AppUser getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(AppUser author) {
         this.author = author;
     }
 

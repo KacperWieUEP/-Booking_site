@@ -28,7 +28,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AppUser user;
 
     @ManyToOne
     @JoinColumn(name = "accommodation_id", nullable = false)
@@ -117,11 +117,11 @@ public class Booking {
         this.updatedAt = updatedAt;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

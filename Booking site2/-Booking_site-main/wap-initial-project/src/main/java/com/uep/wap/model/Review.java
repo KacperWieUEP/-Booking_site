@@ -1,9 +1,6 @@
 package com.uep.wap.model;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;;
 
@@ -19,7 +16,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AppUser appUser;
 
     @ManyToOne
     @JoinColumn(name = "accommodation_id", nullable = false)
@@ -28,12 +25,12 @@ public class Review {
     // Default constructor
     public Review() {}
 
-    public Review(Long reviewID, Integer rating, String comment, LocalDateTime createdAt, User user) {
+    public Review(Long reviewID, Integer rating, String comment, LocalDateTime createdAt, AppUser appUser) {
         this.reviewID = reviewID;
         this.rating = rating;
         this.comment = comment;
         this.createdAt = createdAt;
-        this.user = user;
+        this.appUser = appUser;
     }
 
 
@@ -69,11 +66,11 @@ public class Review {
         this.createdAt = createdAt;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }
