@@ -1,4 +1,5 @@
 
+
 /*
 package com.uep.wap.Seeders;
 
@@ -27,7 +28,7 @@ public class DataSeeder implements CommandLineRunner {
         accommodation1.setAddress("123 Sunshine St");
         accommodation1.setCity("Los Angeles");
         accommodation1.setCountry("USA");
-        accommodation1.setPricePerNight(new BigDecimal("150.00"));
+        accommodation1.setPricePerNight(new Double("150.00"));
         accommodation1.setTotalRooms(50);
         accommodation1.setAvailableRooms(30);
         accommodation1.setCreatedAt(LocalDateTime.now());
@@ -39,7 +40,7 @@ public class DataSeeder implements CommandLineRunner {
         accommodation2.setAddress("456 Mountain Rd");
         accommodation2.setCity("Denver");
         accommodation2.setCountry("USA");
-        accommodation2.setPricePerNight(new BigDecimal("120.00"));
+        accommodation2.setPricePerNight(new Double("120.00"));
         accommodation2.setTotalRooms(20);
         accommodation2.setAvailableRooms(10);
         accommodation2.setCreatedAt(LocalDateTime.now());
@@ -51,7 +52,7 @@ public class DataSeeder implements CommandLineRunner {
         accommodation3.setAddress("789 Ocean Ave");
         accommodation3.setCity("Miami");
         accommodation3.setCountry("USA");
-        accommodation3.setPricePerNight(new BigDecimal("200.00"));
+        accommodation3.setPricePerNight(new Double("200.00"));
         accommodation3.setTotalRooms(100);
         accommodation3.setAvailableRooms(80);
         accommodation3.setCreatedAt(LocalDateTime.now());

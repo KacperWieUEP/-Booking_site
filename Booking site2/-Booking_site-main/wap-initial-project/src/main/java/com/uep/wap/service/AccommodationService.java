@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccommodationService {
@@ -16,8 +17,8 @@ public class AccommodationService {
         return accommodationRepository.findAll();
     }
 
-    public Accommodation getAccommodationById(Long id) {
-        return accommodationRepository.findById(id).orElse(null);
+    public Optional<Accommodation> getAccommodationById(Long id) {
+        return accommodationRepository.findById(id);
     }
 
     public Accommodation saveAccommodation(Accommodation accommodation) {
@@ -26,5 +27,21 @@ public class AccommodationService {
 
     public void deleteAccommodation(Long id) {
         accommodationRepository.deleteById(id);
+    }
+
+    public List<Accommodation> filterAccommodations(String country, String city, double minPrice, double maxPrice, int minRooms) {
+        if (country != null && !country.isEmpty() && city != null && !city.isEmpty()) {
+            return accommodationRepository.findByCountryAndCityAndPricePerNightBetweenAndAvailableRoomsGreaterThanEqual(
+                    country, city, minPrice, maxPrice, minRooms);
+        } else if (country != null && !country.isEmpty()) {
+            return accommodationRepository.findByCountryAndPricePerNightBetweenAndAvailableRoomsGreaterThanEqual(
+                    country, minPrice, maxPrice, minRooms);
+        } else if (city != null && !city.isEmpty()) {
+            return accommodationRepository.findByCityAndPricePerNightBetweenAndAvailableRoomsGreaterThanEqual(
+                    city, minPrice, maxPrice, minRooms);
+        } else {
+            return accommodationRepository.findByPricePerNightBetweenAndAvailableRoomsGreaterThanEqual(
+                    minPrice, maxPrice, minRooms);
+        }
     }
 }

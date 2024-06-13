@@ -73,4 +73,5 @@ public class AppUser {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
 }

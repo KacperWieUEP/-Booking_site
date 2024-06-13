@@ -1,30 +1,13 @@
 package com.uep.wap.model;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Booking {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long BookingID;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
-    private BigDecimal totalPrice;
-    private String status;
-
-
-
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,39 +17,34 @@ public class Booking {
     @JoinColumn(name = "accommodation_id", nullable = false)
     private Accommodation accommodation;
 
-    // Default constructor
-    public Booking() {}
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private double totalPrice;
 
+    // Getters and setters
 
-    public Booking(Long bookingID, LocalDate checkInDate, LocalDate checkOutDate, BigDecimal totalPrice, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        BookingID = bookingID;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.totalPrice = totalPrice;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Long getId() {
+        return id;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public Long getBookingID() {
-        return BookingID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setBookingID(Long bookingID) {
-        BookingID = bookingID;
+    public AppUser getUser() {
+        return user;
+    }
+
+    public void setUser(AppUser user) {
+        this.user = user;
+    }
+
+    public Accommodation getAccommodation() {
+        return accommodation;
+    }
+
+    public void setAccommodation(Accommodation accommodation) {
+        this.accommodation = accommodation;
     }
 
     public LocalDate getCheckInDate() {
@@ -85,47 +63,11 @@ public class Booking {
         this.checkOutDate = checkOutDate;
     }
 
-    public BigDecimal getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public AppUser getUser() {
-        return user;
-    }
-
-    public void setUser(AppUser user) {
-        this.user = user;
-    }
-
-
 }
-
-

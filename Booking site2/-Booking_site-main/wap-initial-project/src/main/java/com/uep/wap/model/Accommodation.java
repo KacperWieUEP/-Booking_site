@@ -21,7 +21,7 @@ public class Accommodation {
     private String city;
     private String country;
 
-    private BigDecimal pricePerNight;
+    private Double pricePerNight;
     private Integer totalRooms;
     private Integer availableRooms;
     @CreatedDate
@@ -50,7 +50,7 @@ public class Accommodation {
     }
 
     // Full constructor
-    public Accommodation(Long accommodationID, String name, String description, String address, String city, String country, BigDecimal pricePerNight, Integer totalRooms, Integer availableRooms, LocalDateTime createdAt, LocalDateTime updatedAt, List<Booking> bookings, List<Room> rooms, List<Review> reviews, Dashboard dashboard, List<Comment> comments) {
+    public Accommodation(Long accommodationID, String name, String description, String address, String city, String country, Double pricePerNight, Integer totalRooms, Integer availableRooms, LocalDateTime createdAt, LocalDateTime updatedAt, List<Booking> bookings, List<Room> rooms, List<Review> reviews, Dashboard dashboard, List<Comment> comments) {
         this.accommodationID = accommodationID;
         this.name = name;
         this.description = description;
@@ -119,11 +119,11 @@ public class Accommodation {
         this.country = country;
     }
 
-    public BigDecimal getPricePerNight() {
+    public Double getPricePerNight() {
         return pricePerNight;
     }
 
-    public void setPricePerNight(BigDecimal pricePerNight) {
+    public void setPricePerNight(Double pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
 

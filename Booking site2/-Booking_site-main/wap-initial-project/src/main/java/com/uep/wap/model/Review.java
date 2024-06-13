@@ -73,4 +73,12 @@ public class Review {
     public void setUser(AppUser appUser) {
         this.appUser = appUser;
     }
+
+    public Accommodation getAccommodation() {
+        return accommodation;
+    }
+
+    public void setAccommodation(Accommodation accommodation) {
+        this.accommodation = accommodation;
+    }
 }
